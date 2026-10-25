@@ -38,7 +38,6 @@ function App() {
             gameMode={game.gameMode}
             canUndo={game.canUndo}
             gameStatus={game.gameStatus}
-            isComputerThinking={game.isComputerThinking}
             onGameModeChange={game.setGameMode}
             onResetGame={game.resetGame}
             onUndo={game.undoMove}
@@ -54,6 +53,14 @@ function App() {
             isComputerThinking={game.isComputerThinking}
             onMove={game.playMove}
           />
+          <p
+            className={`thinking-note${game.isComputerThinking ? ' thinking-note--visible' : ''}`}
+            role="status"
+            aria-live="polite"
+            aria-hidden={!game.isComputerThinking}
+          >
+            The computer is choosing a move…
+          </p>
         </section>
 
         <aside className="support-panel" aria-label="Game details">
