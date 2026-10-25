@@ -15,7 +15,6 @@ describe('Controls', () => {
         gameMode="two-player"
         canUndo={false}
         gameStatus="InProgress"
-        isComputerThinking={false}
         onGameModeChange={onGameModeChange}
         onResetGame={vi.fn()}
         onUndo={vi.fn()}
@@ -32,7 +31,6 @@ describe('Controls', () => {
       gameMode: 'two-player',
       canUndo: false,
       gameStatus: 'InProgress',
-      isComputerThinking: false,
       onGameModeChange: vi.fn(),
       onResetGame: vi.fn(),
       onUndo: vi.fn(),
@@ -43,22 +41,5 @@ describe('Controls', () => {
     expect(screen.getByRole('button', { name: 'Undo' })).toBeDisabled()
     rerender(<Controls {...props} canUndo gameStatus="Won" />)
     expect(screen.getByRole('button', { name: 'Undo' })).toBeDisabled()
-  })
-
-  it('shows the computer thinking state', () => {
-    render(
-      <Controls
-        gameMode="computer"
-        canUndo
-        gameStatus="InProgress"
-        isComputerThinking
-        onGameModeChange={vi.fn()}
-        onResetGame={vi.fn()}
-        onUndo={vi.fn()}
-        onResetScoreboard={vi.fn()}
-      />,
-    )
-
-    expect(screen.getByRole('status')).toHaveTextContent('The computer is choosing a move')
   })
 })
