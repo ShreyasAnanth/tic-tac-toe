@@ -65,7 +65,7 @@ npm run preview    # Preview the production build locally
 - The app is a client-side game with no backend or API endpoints; game and score data are stored in this browser's `localStorage` only.
 - `X` always starts. In computer mode, the human plays `X` and the computer plays `O`.
 - Board cells use row-major indices `0–8`; history displays one-based row and column positions.
-- The computer uses the required five-tier heuristic, not full-game search. Ties within a tier select the lowest row-major index.
+- The computer uses the required five-tier heuristic, not full-game search. If multiple winning or blocking moves are available, it chooses the first qualifying line in the defined order: rows, columns, then diagonals. Corner and final open-cell choices use the lowest available row-major index.
 - Computer replies wait 600 ms; pending replies are canceled when a round is undone, reset, or switched to another mode.
 - Two-player undo removes the latest move. Computer-mode undo removes both moves from the last turn, or just the human move if the computer is still waiting.
 - Undo is disabled after a win or draw, keeping the completed result and score final.
