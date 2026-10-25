@@ -2,7 +2,6 @@ export function Controls({
   gameMode,
   canUndo,
   gameStatus,
-  isComputerThinking,
   onGameModeChange,
   onResetGame,
   onUndo,
@@ -54,11 +53,6 @@ export function Controls({
         </button>
       </div>
 
-      {isComputerThinking && (
-        <p className="thinking-note" role="status">
-          The computer is choosing a move…
-        </p>
-      )}
     </div>
   );
 }
