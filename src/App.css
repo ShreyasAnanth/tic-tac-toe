@@ -200,6 +200,9 @@
   font-size: clamp(48px, 10vw, 82px);
   font-weight: 750;
   line-height: 1;
+  caret-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
   transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
   -webkit-tap-highlight-color: transparent;
 }
@@ -349,6 +352,12 @@
   margin: -6px 0 0;
   color: var(--text-muted);
   font-size: 12px;
+  line-height: 1.3;
+  visibility: hidden;
+}
+
+.thinking-note--visible {
+  visibility: visible;
 }
 
 .app-footer {
