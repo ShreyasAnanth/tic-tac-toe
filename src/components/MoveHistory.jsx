@@ -1,4 +1,17 @@
+import { useEffect, useRef } from 'react'
+
 export function MoveHistory({ history }) {
+  const latestMoveRef = useRef(null)
+
+  useEffect(() => {
+    latestMoveRef.current?.scrollIntoView?.({
+      block: 'nearest',
+      behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
+    })
+  }, [history.length])
+
   return (
     <section className="history-panel" aria-labelledby="history-heading">
       <div className="panel-heading">
@@ -19,8 +32,11 @@ export function MoveHistory({ history }) {
               </tr>
             </thead>
             <tbody>
-              {history.map(({ moveNumber, player, position, index }) => (
-                <tr key={`${moveNumber}-${index}`}>
+              {history.map(({ moveNumber, player, position, index }, historyIndex) => (
+                <tr
+                  key={`${moveNumber}-${index}`}
+                  ref={historyIndex === history.length - 1 ? latestMoveRef : null}
+                >
                   <td>{moveNumber}</td>
                   <td className={`history-player history-player--${player.toLowerCase()}`}>
                     {player}
